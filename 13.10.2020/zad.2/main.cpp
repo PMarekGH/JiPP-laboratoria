@@ -51,4 +51,5 @@ bool jestPalindromem(std::string napis)
                 return 1;
             }
         }
+        return 0;
 }
