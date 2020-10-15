@@ -5,5 +5,8 @@
 !.vscode/extensions.json
 *.code-workspace
 
+*.exe
+main
+
 # Local History for Visual Studio Code
 .history/
