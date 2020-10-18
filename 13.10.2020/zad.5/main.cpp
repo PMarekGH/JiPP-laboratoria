@@ -45,10 +45,10 @@ void wyswietlMacierz(Macierz* mat)
 int main()
 {
     Macierz mac1, mac2, mac3;
-    cout << "Podaj dane macierzy 1:" << endl;
+    cout << "Podaj dane macierzy 1: " << endl;
     macierzInit(&mac1);
     wyswietlMacierz(&mac1);
-    cout << "Podaj dane macierzy 2:" << endl;
+    cout << "Podaj dane macierzy 2: " << endl;
     macierzInit(&mac2);
     wyswietlMacierz(&mac2);
 
