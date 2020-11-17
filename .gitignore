@@ -9,6 +9,7 @@
 *.exe
 *.o
 main
+build
 
 # Local History for Visual Studio Code
 .history/

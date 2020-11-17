@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include "matrix.hpp"
+#include "lab3/matrix.hpp"
 
 Matrix::Matrix(int row, int col)
 {
@@ -156,7 +156,7 @@ void Matrix::print()
     {
         for(int j = 0; j < colCount; j++)
         {
-            std::cout << std::setw(4) << data[i][j] <<  " ";
+            std::cout << std::setw(5) << data[i][j] <<  " ";
         }
         std::cout << std::endl;
     }
