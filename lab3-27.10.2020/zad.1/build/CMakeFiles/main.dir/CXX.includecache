@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/DEV/C++/JiPP/JiPP-laboratoria/lab3-27.10.2020/zad.1/src/main.cpp
+iostream
+-
+random
+-
+matrix.hpp
+/mnt/c/DEV/C++/JiPP/JiPP-laboratoria/lab3-27.10.2020/zad.1/src/matrix.hpp
+
+/mnt/c/DEV/C++/JiPP/JiPP-laboratoria/lab3-27.10.2020/zad.1/src/matrix.cpp
+stdlib.h
+-
+iostream
+-
+iomanip
+-
+fstream
+-
+matrix.hpp
+/mnt/c/DEV/C++/JiPP/JiPP-laboratoria/lab3-27.10.2020/zad.1/src/matrix.hpp
+
+/mnt/c/DEV/C++/JiPP/JiPP-laboratoria/lab3-27.10.2020/zad.1/src/matrix.hpp
+string
+-
+
