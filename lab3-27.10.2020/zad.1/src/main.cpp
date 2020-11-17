@@ -1,6 +1,6 @@
 #include <iostream>
 #include <random>
-#include "matrix.hpp"
+#include "lab3/matrix.hpp"
 
 using namespace std;
 
