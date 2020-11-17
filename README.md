@@ -1,9 +1,14 @@
 # JiPP-laboratoria
 
 ### Jak skompilować kod?
-Do skompilowania kodu potrzebny jest kompilator g++.
+Narzędzia potrzebne do kompilacji:
+- CMake
+- Make
 
-- Linux:
-W folderze z kodem źródłowym użyć polecenia ` make `
-- Windows:
-Uruchomić plik ` script.bat `
+Przejdź do głównego folderu i wykonaj polecenia
+`mkdir build`
+`cd build`
+`cmake ..`
+`make`
+
+W folderze build pojawi się program main.
