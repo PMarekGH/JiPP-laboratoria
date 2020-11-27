@@ -1,12 +1,14 @@
 #include <iostream>
 #include <random>
 #include <lab3/matrix.hpp>
+#include <fstream>
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    double* ptr;
+    bool wartosc;
+    std::vector<double> wiersz;
 
     Matrix m1(5, 5);
     for(int i = 0; i < m1.rows(); i++)
@@ -30,16 +32,25 @@ int main(int argc, char *argv[])
     std::cout << "m1-m2" << std::endl << m1-m2 << std::endl;
     std::cout << "m1*m2" << std::endl << m1*m2 << std::endl;
     std::cout << "m3" << std::endl << m3 << std::endl;
-    bool wartosc = m1==m2;
+    wartosc = m1==m2;
     std::cout << "m1==m2" << std:: endl << wartosc << std::endl;
+    wartosc = m1==m1;
+    std::cout << "m1==m1" << std:: endl << wartosc << std::endl;
     std::cout << "m3[0]" << std::endl;
-    ptr = m3[0]; //TODO: nie dziala
-    //TODO: FILE* file <<
-    for(int i = 0; i < m1.cols(); i++)
+    wiersz = m3[0];
+    for(int i = 0; i < m3.cols(); i++)
     {
-        std::cout << ptr[i] << " ";
+        std::cout << wiersz[i] << " ";
     }
     std::cout << std::endl;
+
+    std::ofstream file("../util/test.txt", std::ios::out);
+    file << m1;
+    file.close();
+
+    Matrix m4("../util/test.txt");
+    std::cout << "m4: " << std::endl;
+    std::cout << m4 << std::endl;
 
     return 0;
 }

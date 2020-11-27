@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 class Matrix
 {
@@ -11,12 +12,12 @@ class Matrix
         Matrix(unsigned int n);
         Matrix(std::string filepath);
         void set(unsigned int row, unsigned int column, double wartosc);
-        double get(unsigned int row, unsigned int column);
+        double get(unsigned int row, unsigned int column) const;
         Matrix add(Matrix& m2);
         Matrix subtract(Matrix& m2);
         Matrix multiply(Matrix& m2);
-        int cols();
-        int rows();
+        int cols() const;
+        int rows() const;
         void print();
         void store(std::string filename);
 
@@ -27,7 +28,7 @@ class Matrix
         friend std::ostream& operator<<(std::ostream& os, const Matrix &m);
         friend std::istream& operator>>(std::istream& is, const Matrix &m);
         bool operator==(Matrix& m2);
-        double* operator[](unsigned int i);
+        std::vector<double> operator[](unsigned int i);
 
     private:
         double** data = nullptr;

@@ -73,7 +73,7 @@ void Matrix::set(unsigned int row, unsigned int column, double value)
     data[row][column] = value;
 }
 
-double Matrix::get(unsigned int row, unsigned int column)
+double Matrix::get(unsigned int row, unsigned int column) const
 {
     return data[row][column];
 }
@@ -163,12 +163,12 @@ Matrix Matrix::multiply(Matrix& m2)
     return m3;
 }
 
-int Matrix::cols()
+int Matrix::cols() const
 {
     return colCount;
 }
 
-int Matrix::rows()
+int Matrix::rows() const
 {
     return rowCount;
 }
@@ -290,11 +290,12 @@ Matrix Matrix::operator*(Matrix& m2)
 
 std::ostream& operator<<(std::ostream& os, const Matrix& m)
 {
+    os << m.rows() << " " << m.cols() << std::endl;
     for(int i = 0; i < m.rowCount; i++)
     {
         for(int j = 0; j < m.colCount; j++)
         {
-            os << std::setw(5) << m.data[i][j] <<  " ";
+            os << std::setw(5) << m.get(i, j) <<  " ";
         }
         os << std::endl;
     }
@@ -323,21 +324,20 @@ bool Matrix::operator==(Matrix& m2)
         {
             if(data[i][j] != m2.data[i][j])
             {
-                return 0;
+                return false;
             }
         }
     }
 
-    return 1;
+    return true;
 }
 
-double* Matrix::operator[](unsigned int i)
+std::vector<double> Matrix::operator[](unsigned int i)
 {
-    double* ptr = (double *)malloc(sizeof(double) * colCount);
+    std::vector<double> wiersz;
     for(int j = 0; j < colCount; j++)
     {
-        ptr[j] = get(i, j);
-        ptr++;
+        wiersz.push_back(get(i, j));
     }
-    return ptr;
+    return wiersz;
 }
