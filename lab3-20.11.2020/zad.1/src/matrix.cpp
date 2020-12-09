@@ -4,6 +4,7 @@
 #include <fstream>
 #include <lab3/matrix.hpp>
 
+
 Matrix::Matrix(int row, int col)
 {
     rowCount = row;

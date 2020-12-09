@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <string>
+#include <libs/sqlite3/sqlite3.h>
 
 class Matrix
 {
