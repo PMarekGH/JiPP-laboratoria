@@ -1,9 +1,5 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#pragma once
 
-#include <string>
-#include <iostream>
-#include <vector>
 #include <string>
 
 using namespace std;
@@ -12,7 +8,8 @@ class Employee
 {
     public:
     // Constructors
-    Employee()
+    Employee();
+    Employee(string, string, string, string, string);
 
     // Methods
     string GetId() const;
@@ -34,5 +31,3 @@ class Employee
     string position;
 
 };
-
-#endif

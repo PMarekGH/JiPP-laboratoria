@@ -1,38 +1,31 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#pragma once
 
 #include <string>
 #include <iostream>
 #include <vector>
-#include <string>
+#include <map>
+#include <lab3/employee.hpp>
 
 using namespace std;
 
-class Employee
+class HRMS
 {
     public:
     // Constructors
-    Employee()
+    HRMS();
 
     // Methods
-    string GetId() const;
-    void SetId();
-    string GetName() const;
-    void SetName();
-    string GetSurname() const;
-    void SetSurname();
-    string GetDepartmentId() const;
-    void SetDepartmentId();
-    string GetPosition() const;
-    void SetPosition() const;
+    add(Employee, string, double);
+    printDepartment(string);
+    changeSalary(string, double);
+    printSalaries();
+    printSalariesSorted(); //std::algorithm
+
 
     private:
-    string id;
-    string name;
-    string surname;
-    string departmentId;
-    string position;
+
+    vector<Employee> employees;
+    map<string, vector<string>> departmentEmployee;
+    map<Employee, double> salaries;
 
 };
-
-#endif
