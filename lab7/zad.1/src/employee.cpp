@@ -1,8 +1,6 @@
-#include <lab3/employee.hpp>
+#include <lab7/employee.hpp>
 
-using namespace std;
-
-    Employee::Employee(string _id, string _name, string _surname, string _departmentId, string _position)
+    Employee::Employee(std::string _id, std::string _name, std::string _surname, std::string _departmentId, std::string _position)
     {
         id = _id;
         name = _name;
@@ -11,42 +9,42 @@ using namespace std;
         position = _position;
     }
 
-    Employee::string GetId() const {
+    std::string Employee::GetId() const {
     return id;
     }
 
-    Employee::void SetId(string _id) {
+    void  Employee::SetId(std::string _id) {
     id = _id;
     }
 
-    Employee::string GetName() const {
+    std::string Employee::GetName() const {
         return name;
     }
 
-    Employee::void SetName(string _name) {
+    void Employee::SetName(std::string _name) {
         name = _name;
     }
 
-    Employee::string GetSurname() const {
+    std::string Employee::GetSurname() const {
         return surname;
     }
 
-    Employee::void SetSurname(string _surname) {
+    void Employee::SetSurname(std::string _surname) {
         surname = _surname;
     }
 
-    Employee::string GetDepartmentId() const {
+    std::string Employee::GetDepartmentId() const {
         return departmentId;
     }
 
-    Employee::void SetDepartmentId(string _departmentId) {
+    void Employee::SetDepartmentId(std::string _departmentId) {
         departmentId = _departmentId;
     }
 
-    Employee::string GetPosition() const {
+    std::string Employee::GetPosition() const {
         return position;
     }
 
-    Employee::void SetPosition(string _position) {
+    void Employee::SetPosition(std::string _position) {
         position = _position;
     }

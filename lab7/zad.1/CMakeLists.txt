@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.0 )
 
-project( lab3 )
+project( lab7 )
 
 # flags
 
@@ -8,6 +8,6 @@ project( lab3 )
 include_directories( ./include ./src )
 
 # target
-add_executable( main ./src/main.cpp ./src/employee.cpp )
+add_executable( main ./src/main.cpp ./src/employee.cpp ./src/HRMS.cpp )
 
 # 3rd party libs

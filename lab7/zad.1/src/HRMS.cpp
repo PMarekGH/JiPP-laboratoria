@@ -1,58 +1,58 @@
-#include <lab3/HRMS.hpp>
+#include <lab7/HRMS.hpp>
 #include <algorithm>
 
-using namespace std;
 
-HRMS::HRMS()
-{
+bool valueSort(const std::pair<std::string, double> &fst, 
+               const std::pair<std::string, double> &snd) 
+{ 
+    return (fst.second > snd.second); 
+} 
 
-}
-
-HRMS::add(Employee employee, string departmentID, double salary)
+void HRMS::add(Employee employee, std::string departmentID, double salary)
 {
     employees.push_back(employee);
-
-    auto it = departmentEmployee.find(employee.getDepartmentId()); 
-    if (it != departmentEmployee.end())
-    {
-        it->second.push_back(employee.GetId());
-    }
-    else
-    {
-        departmentEmployee.insert({employee.GetDepartmentId(), employee.getId()});
-    }
-    
+    std::pair<std::string, std::string> tempPair;
+    tempPair.first = departmentID;
+    tempPair.second = employee.GetId();
+    departmentEmployee.insert(tempPair);
     salaries.insert({employee.GetId(), salary});
 }
 
-HRMS::printDepartment(string departmentId)
+void HRMS::printDepartment(std::string departmentId)
 {
-    auto employeeIds = departmentEmployee.find(departmentId);
-    if(employeeIds != departmentEmployee.end())
-    {
-        for_each(employeeIds->second.front(), employeeIds->second.back(), [](string employeeId){
-            cout << employeeId << endl;
-        });
-    }
+    std::cout << "Department: " << departmentId << std::endl;
+    std::pair<std::multimap<std::string, std::string>::iterator, std::multimap<std::string, std::string>::iterator> range = departmentEmployee.equal_range(departmentId);
+    std::for_each(range.first, range.second, [](const auto &mapPair){
+        std::cout << mapPair.second << std::endl;
+    });
+
 }
 
-HRMS::changeSalary(string employeeId, double salary)
+void HRMS::changeSalary(std::string employeeId, double salary)
 {
-    auto employee = salary.find(employeeId);
+    auto employee = salaries.find(employeeId);
     employee->second = salary;
 }
 
-HRMS::printSalaries()
+void HRMS::printSalaries()
 {
-    cout << "Employee: {Id, name, surname, departmentId, position}, salary" << endl;
-    for_each(employees.front(), employees.end(), [](Employee employee){
-        cout << "Employee: {" << employee.GetId() << ", " << employee.GetName() << ", " << employee.GetSurname() << ", " << employee.GetDepartmentId() << ", " << employee.GetPosition() << "}, ";
+    for(Employee employee : employees)
+    {
+        std::cout << employee.GetId() << ", ";
         auto it = salaries.find(employee.GetId());
-        cout << it->second << endl;
-    });
+        std::cout << it->second << std::endl;
+    }
 }
 
-HRMS::printSalariesSorted()
-{
-
-}
+void HRMS::printSalariesSorted(){
+    std::vector<std::pair<std::string,double>> tempVector;
+    for(auto itr=salaries.begin();itr!=salaries.end();itr++)
+    {
+        tempVector.push_back(std::make_pair(itr->first,itr->second));
+    }
+    std::sort(tempVector.begin(),tempVector.end(), valueSort);
+    for(int i=0;i<tempVector.size();i++)
+    {
+        std::cout << tempVector[i].first << ", " << tempVector[i].second << std::endl;
+    }
+ }
