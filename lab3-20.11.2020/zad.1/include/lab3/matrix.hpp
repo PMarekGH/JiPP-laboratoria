@@ -2,7 +2,6 @@
 #define MATRIX_H
 
 #include <string>
-#include <libs/sqlite3/sqlite3.h>
 
 class Matrix
 {
@@ -19,6 +18,8 @@ class Matrix
         int rows();
         void print();
         void store(std::string filename);
+        void storeDB(std::string filename);
+        
     private:
         double** data = nullptr;
         int rowCount;

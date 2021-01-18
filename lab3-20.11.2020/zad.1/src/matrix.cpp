@@ -4,6 +4,8 @@
 #include <fstream>
 #include <lab3/matrix.hpp>
 
+#include <lab3/sqlite3.h>
+
 
 Matrix::Matrix(int row, int col)
 {
@@ -178,4 +180,86 @@ void Matrix::store(std::string filename)
     }
 
     file.close();
+}
+
+void Matrix::storeDB(std::string filename)
+{
+    sqlite3 *db;          // struktura bazy danych
+    int test;             // zwracany status po wykonaniu kazdego polecenia
+    char *error;          // komunikat zwrotny w przypadku wystapienia bledu
+    std::string dane;          // dane do drugiej kwerendy
+    unsigned char *bajty; // zamiana elementow macierzy na postac binarna
+    std::stringstream strumien;
+    char bajt[3];
+
+     const char *kwerenda_1 =
+        "CREATE TABLE IF NOT EXISTS macierze ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "cols INTEGER NOT NULL, "
+        "rows INTEGER NOT NULL, "
+        "cells BLOB NOT NULL"
+        ");";
+
+    const char *kwerenda_2 =
+        "INSERT INTO macierze "
+        "(cols, rows, cells) "
+        "VALUES ";
+
+    test = sqlite3_open(filename.c_str(), &db);
+
+    if (test != SQLITE_OK)
+    {
+      std::cout << "Nie udalo sie otworzyc bazy danych \"" << filename << "\"!" << std::endl;
+      return;
+    }
+
+     test = sqlite3_exec(db, kwerenda_1, NULL, NULL, &error);
+
+    if (test != SQLITE_OK)
+    {
+      sqlite3_close(db);
+
+      std::cout << "Error: " << error << std::endl;
+
+      return;
+    }
+
+    strumien << kwerenda_2 << "(" << colCount << ", " << rowCount << ", x'";
+
+    // zamieniamy tablice DOUBLE na strumien bajtow
+
+    for (int i = 0; i < rowCount; i++)
+    {
+      for (int j = 0; j < colCount; j++)
+      {
+        bajty = (unsigned char *)&(data[i][j]);
+
+        for (int k = 0; k < sizeof(double); k++)
+        {
+          sprintf(bajt, "%02X", bajty[k]);
+          strumien << bajt;
+        }
+      }
+    }
+
+    strumien << "');";
+
+    std::cout << "Wykonujemy kwerende: " << strumien.str() << std::endl;
+    test = sqlite3_exec(db, strumien.str().c_str(), NULL, NULL, &error);
+
+    if (test != SQLITE_OK)
+    {
+      sqlite3_close(db);
+
+      std::cout << "Blad dodawania rekordu!" << std::endl;
+      std::cout << "Error: " << error << std::endl;
+
+      return;
+    }
+
+    // zamykamy plik z baza danych
+    sqlite3_close(db);
+
+
+
 }

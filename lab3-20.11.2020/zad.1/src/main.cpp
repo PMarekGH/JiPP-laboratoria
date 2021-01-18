@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     std::cout << "Macierz 6: kolumny:  " << m6.cols() <<", wiersze: " << m6.rows() << std::endl;
 
     m6.store("../util/Macierz6.txt");
+    m6.store("../util/baza.db");
 
     return 0;
 }

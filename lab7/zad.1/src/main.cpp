@@ -7,6 +7,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    
     Employee emp1("1", "Jan", "Kowalski", "DEP1", "Starszy Inżynier");
     Employee emp2("2", "Piotr", "Szczerbik", "DEP2", "Księgowy");
     Employee emp3("3", "Mikołaj", "Jurek", "DEP1", "Programista c++");
