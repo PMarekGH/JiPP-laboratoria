@@ -12,6 +12,12 @@ add_executable( main ./src/main.cpp ./src/matrix.cpp ./src/sqlite3.c)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-find_package(dl)
-target_link_libraries(main PRIVATE Threads::Threads)
-target_link_libraries(main ${CMAKE_DL_LIBS})
+
+target_link_libraries (
+    
+    main
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/sqlite3.lib
+    ${CMAKE_DL_LIBS}
+    Threads::Threads
+)
