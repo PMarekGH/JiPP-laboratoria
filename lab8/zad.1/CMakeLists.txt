@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.0 )
 
-project( lab7 )
+project( lab8 )
 
 # flags
 
@@ -8,6 +8,8 @@ project( lab7 )
 include_directories( ./include ./src )
 
 # target
-add_executable( main ./src/main.cpp )
+add_executable( main ./src/main.cpp ./src/philosopher.cpp)
 
-# 3rd party libs
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(main PRIVATE Threads::Threads)
